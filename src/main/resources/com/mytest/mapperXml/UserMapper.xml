@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 为这个mapper指定一个唯一的namespace，指向一定要正确 -->
+<mapper namespace="com.mytest.mapper.UserMapper">
+
+    <resultMap id="userMap" type="com.mytest.pojo.User">
+        <result property="id" column="id"/>
+        <result property="name" column="name"/>
+        <result property="password" column="password"/>
+    </resultMap>
+
+    <!--
+　　在标签中编写SQL语句，id属性值必须是唯一的，不能够重复,
+　　使用parameterType属性指明查询时使用的参数类型，resultType属性指明查询返回的结果集类型
+　　resultType="com.mytest.pojo.User"就表示将查询结果封装成一个User类的对象返回,User类就是t_user表所对应的实体类
+　　-->
+    <!-- 插入数据 -->
+    <insert id="addUser" parameterType="com.mytest.pojo.User">
+        <selectKey resultType="int" order="AFTER"
+                   keyProperty="id">
+            SELECT LAST_INSERT_ID() AS id
+        </selectKey>
+        INSERT INTO user (name,password)
+        VALUES (#{name},#{password})
+    </insert>
+
+    <!-- 更新数据 -->
+    <update id="updateUser" parameterType="com.mytest.pojo.User">
+        UPDATE user
+        <set>
+            <if test="name != null">
+                name=#{name},
+            </if>
+            <if test="password != null">
+                password=#{password},
+            </if>
+        </set>
+        WHERE id = #{id}
+    </update>
+
+    <!-- 搜索条件 -->
+    <sql id="selectWhere">
+        <where>
+            <if test="name != null">
+                AND name=#{name}
+            </if>
+            <if test="password != null">
+                AND password=#{password}
+            </if>
+        </where>
+    </sql>
+
+    <!-- 数据总量 -->
+    <select id="getUserCount" resultType="int" parameterType="Map">
+        SELECT count(1)
+        FROM
+        user
+        <include refid="selectWhere"></include>
+    </select>
+
+    <!-- 查询列表 -->
+    <select id="getUserList" resultMap="userMap" parameterType="Map">
+        SELECT
+        id,name,password
+        FROM user
+        <include refid="selectWhere"></include>
+        LIMIT #{offset},#{limit}
+    </select>
+
+    <!-- 查询数据 -->
+    <select id="getUser" resultMap="userMap" parameterType="Integer">
+		SELECT
+        id,name,password
+		FROM user
+        WHERE id = #{id}
+	</select>
+
+    <delete id="deleteUser" parameterType="Integer">
+        DELETE FROM user WHERE id = #{id}
+    </delete>
+
+</mapper>
