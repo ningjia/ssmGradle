@@ -12,4 +12,7 @@ public interface CourseService {
 
     public List<Course> getCourseList();
 
+    public Course getCourse(Integer id);
+
+    public void updateCourse(Course course);
 }

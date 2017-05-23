@@ -22,4 +22,14 @@ public class CourseServiceImpl implements CourseService {
         return courseMapper.getCourseListWithTeacher();
     }
 
+    @Override
+    public Course getCourse(Integer id) {
+        return courseMapper.getCourse(id);
+    }
+
+    @Override
+    public void updateCourse(Course course) {
+        courseMapper.updateCourse(course);
+    }
+
 }

@@ -26,6 +26,7 @@
         <th rowspan="2">描述</th>
         <th colspan="3">教师信息</th>
         <th rowspan="2">选课学生</th>
+        <th rowspan="2">操作</th>
       </tr>
       <tr>
         <th>教师ID</th>
@@ -53,6 +54,9 @@
                   ${s.remark}
                   <br>
               </c:forEach>
+          </td>
+          <td>
+            <a href="/ssmGradle/course/update?id=${c.id}" target="_blank">更新课程</a>
           </td>
         </tr>
       </c:forEach>
