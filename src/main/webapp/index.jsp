@@ -17,5 +17,13 @@
     <div>
       <a href="/ssmGradle/user/list ">User表测试</a>
     </div>
+    <div>通过@Select、@Results等注解配置MyBatis,实现查询操作的DEMO</div>
+    <div>
+      <a href="/ssmGradle/course/list ">Course表测试</a>
+    </div>
+    <div>未完成</div>
+    <div>
+      <a href="/ssmGradle/student/list ">Student表测试</a>
+    </div>
   </body>
 </html>
