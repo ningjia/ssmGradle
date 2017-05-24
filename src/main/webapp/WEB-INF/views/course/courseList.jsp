@@ -16,7 +16,15 @@
   CourseTest
   <hr>
   <div>
-    "教师信息"的内容为一对一的关联查询,"选课学生"的内容为一对多的关联查询
+    <p>
+      "教师信息"的内容为一对一的关联查询,"选课学生"的内容为一对多的关联查询,均使用@Select注解完成。
+    </p>
+    <p>
+      "更新课程",使用@Update注解,更新课程的描述信息(course表的remark):修改后三位的随机数。
+    </p>
+    <p>
+      查看课程,使用@SelectProvider注解,按照课程ID和课程名称的条件,查找出对应的课程信息。
+    </p>
   </div>
   <div>
     <table border="1">
@@ -57,6 +65,7 @@
           </td>
           <td>
             <a href="/ssmGradle/course/update?id=${c.id}" target="_blank">更新课程</a>
+            <a href="/ssmGradle/course/getByIdAndName?id=${c.id}&name=${c.name}" target="_blank">查看课程</a>
           </td>
         </tr>
       </c:forEach>

@@ -46,4 +46,10 @@ public class CourseController {
         return "课程数据已更新，courseId=" + id + ", remark=" + remark;
     }
 
+    @RequestMapping(value = "/course/getByIdAndName", method = RequestMethod.GET)
+    @ResponseBody
+    public Course getByIdAndName(Integer id, String name){
+        return courseService.getCourseByIdAndName(id, name);
+    }
+
 }

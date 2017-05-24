@@ -14,5 +14,7 @@ public interface CourseService {
 
     public Course getCourse(Integer id);
 
+    public Course getCourseByIdAndName(Integer id, String name);
+
     public void updateCourse(Course course);
 }

@@ -1,6 +1,7 @@
 package com.mytest.mapper;
 
 import com.mytest.pojo.Course;
+import com.mytest.sqlProvider.CourseSqlProvider;
 import org.apache.ibatis.annotations.*;
 
 import java.util.List;
@@ -39,7 +40,16 @@ public interface CourseMapper {
      * @return
      */
     @Select("select * from course where id=#{courseId}")
-    public Course getCourse(Integer courseId);
+    public Course getCourseById(Integer courseId);
+
+    /**
+     * 根据课程id和课程名称,获取课程信息。使用SqlProvide形式。
+     * @param courseId 课程ID
+     * @param courseName 课程名称
+     * @return
+     */
+    @SelectProvider(type = CourseSqlProvider.class, method = "getCourseByIdAndName")
+    public Course getCourseByIdWithSqlProvider(Integer courseId, String courseName);
 
     /**
      * 更新course表的数据
