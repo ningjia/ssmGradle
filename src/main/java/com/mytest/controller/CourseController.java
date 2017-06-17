@@ -52,4 +52,10 @@ public class CourseController {
         return courseService.getCourseByIdAndName(id, name);
     }
 
+    @RequestMapping(value = "/course/add")
+    public String add(Course c){
+//        System.out.println(c.toString());
+        courseService.insertCourse(c);
+        return "redirect:/course/list";//请求重定向
+    }
 }

@@ -80,6 +80,11 @@ public class UserController {
         return "redirect:/user/list";
     }
 
+    /**
+     * 新增用户
+     * @param u 用户对象
+     * @return
+     */
     @RequestMapping(value = "/user/add")
     public String add(User u) {
         userService.addUser(u);

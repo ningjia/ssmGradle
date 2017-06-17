@@ -17,7 +17,7 @@
     <div>
       <a href="/ssmGradle/user/list ">User表测试</a>
     </div>
-    <div>通过@Select、@Results等注解配置MyBatis,实现查询操作的DEMO</div>
+    <div>通过注解配置MyBatis,实现CURD操作的DEMO,包含了1:1,1:N等数据关系</div>
     <div>
       <a href="/ssmGradle/course/list ">Course表测试</a>
     </div>

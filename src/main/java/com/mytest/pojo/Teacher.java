@@ -34,4 +34,13 @@ public class Teacher {
     public void setRank(String rank) {
         this.rank = rank;
     }
+
+    @Override
+    public String toString() {
+        return "Teacher{" +
+                "id=" + id==null?"":id +
+                ", name='" + name==null?"":name + '\'' +
+                ", rank='" + rank==null?"":rank + '\'' +
+                '}';
+    }
 }

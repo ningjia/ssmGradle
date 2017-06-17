@@ -54,4 +54,15 @@ public class Student {
     public void setRemark(String remark) {
         this.remark = remark;
     }
+
+    @Override
+    public String toString() {
+        return "Student{" +
+                "id=" + id==null?"":id +
+                ", name='" + name==null?"":name + '\'' +
+                ", age=" + age==null?"":age +
+                ", sex=" + sex==null?"":sex +
+                ", remark='" + remark==null?"":remark + '\'' +
+                '}';
+    }
 }

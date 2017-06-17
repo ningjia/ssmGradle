@@ -10,7 +10,7 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <html>
   <head>
-    <title>StudentTest</title>
+    <title>CourseTest</title>
   </head>
   <body>
   CourseTest
@@ -25,6 +25,23 @@
     <p>
       查看课程,使用@SelectProvider注解,按照课程ID和课程名称的条件,查找出对应的课程信息。
     </p>
+    <p>
+      新增课程,使用@InsertProvider和@Insert注解,分别写入course表数据和student_course表数据。
+    </p>
+    <p>
+      删除课程信息(未开发)。
+    </p>
+    <p>
+      删除课程信息,并通过事务进行控制,测试删除失败的回滚情况(未开发)。
+    </p>
+
+    <p>
+      Ajax读取数据,并显示在画面的select元素中(未开发)。
+    </p>
+  </div>
+  <hr>
+  <div>
+    <a href="/ssmGradle/redirect/jsp?url=course/addCourse" >新增课程</a>
   </div>
   <div>
     <table border="1">

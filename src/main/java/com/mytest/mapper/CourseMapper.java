@@ -58,4 +58,16 @@ public interface CourseMapper {
     @Update("update course set name=#{name},remark=#{remark},t_id=#{t_id} where id=#{id}")
     public void updateCourse(Course course);
 
+    /**
+     * 插入course表的数据
+     * @param course
+     */
+    @InsertProvider(type = CourseSqlProvider.class, method = "insertCourse")
+    @Options(useGeneratedKeys = true, keyProperty = "id")
+    /* 获得insert所插入数据的主键
+    *  keyProperty表示返回的id要保存到对象的哪个属性中。而useGeneratedKeys表示主键id为自增长模式。
+    *  mysql的话只要加上这两个属性就可以了，加上后会自动把主键set到对象的属性上。
+    * */
+    public int insertCourseWithSqlProvider(Course course);
+
 }
