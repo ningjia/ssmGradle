@@ -32,7 +32,7 @@
       删除课程信息。
     </p>
     <p>
-      删除课程信息,并通过事务进行控制,测试删除失败的回滚情况(未开发)。
+      (事务)删除课程信息。通过事务进行控制,测试删除失败时的回滚情况。
     </p>
 
     <p>
@@ -84,6 +84,7 @@
             <a href="/ssmGradle/course/update?id=${c.id}" target="_blank">更新课程</a>
             <a href="/ssmGradle/course/getByIdAndName?id=${c.id}&name=${c.name}" target="_blank">查看课程</a>
             <a href="/ssmGradle/course/delete?id=${c.id}">删除课程</a>
+            <a href="/ssmGradle/course/deleteWithTX?id=${c.id}">(事务)删除课程</a>
           </td>
         </tr>
       </c:forEach>

@@ -21,4 +21,6 @@ public interface CourseService {
     public void insertCourse(Course course);
 
     public void deleteCourse(Integer id);
+
+    public void deleteCourseWithTX(Integer id) throws Exception;
 }

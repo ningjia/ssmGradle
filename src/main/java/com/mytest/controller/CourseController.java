@@ -58,10 +58,21 @@ public class CourseController {
         return "redirect:/course/list";//请求重定向
     }
 
-
     @RequestMapping(value = "/course/delete")
     public String delete(Integer id){
         courseService.deleteCourse(id);
+        return "redirect:/course/list";//请求重定向
+    }
+
+    @RequestMapping(value = "/course/deleteWithTX")
+    @ResponseBody
+    public String deleteWithTX(Integer id){
+        try {
+            courseService.deleteCourseWithTX(id);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return "删除数据出错,已进行事务回滚。(将已删除的student_course表数据,进行回滚恢复。) 返回至前一列表,并刷新界面来查看结果(数据未删除)";
+        }
         return "redirect:/course/list";//请求重定向
     }
 

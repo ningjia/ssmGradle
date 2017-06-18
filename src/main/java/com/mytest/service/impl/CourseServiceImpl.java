@@ -7,6 +7,7 @@ import com.mytest.pojo.Student;
 import com.mytest.service.CourseService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -60,5 +61,17 @@ public class CourseServiceImpl implements CourseService {
         int count_sc = scMapper.deleteStudentCourse(id);
         System.out.println("count_c表删除"+count_c+"行数据,count_sc表删除"+count_sc+"行数据");
     }
+
+    @Override
+    @Transactional
+    public void deleteCourseWithTX(Integer id) throws Exception{
+        //删除student_course表的数据
+        int count_sc = scMapper.deleteStudentCourse(id);
+        //抛出运行时异常，事务回滚
+        int i = 1 / 0;
+        //删除course表的数据
+        int count_c = courseMapper.deleteCourse(id);
+    }
+
 
 }
