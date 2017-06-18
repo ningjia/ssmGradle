@@ -29,7 +29,7 @@
       新增课程,使用@InsertProvider和@Insert注解,分别写入course表数据和student_course表数据。
     </p>
     <p>
-      删除课程信息(未开发)。
+      删除课程信息。
     </p>
     <p>
       删除课程信息,并通过事务进行控制,测试删除失败的回滚情况(未开发)。
@@ -83,6 +83,7 @@
           <td>
             <a href="/ssmGradle/course/update?id=${c.id}" target="_blank">更新课程</a>
             <a href="/ssmGradle/course/getByIdAndName?id=${c.id}&name=${c.name}" target="_blank">查看课程</a>
+            <a href="/ssmGradle/course/delete?id=${c.id}">删除课程</a>
           </td>
         </tr>
       </c:forEach>

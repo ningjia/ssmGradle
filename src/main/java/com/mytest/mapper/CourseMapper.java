@@ -70,4 +70,12 @@ public interface CourseMapper {
     * */
     public int insertCourseWithSqlProvider(Course course);
 
+    /**
+     * 根据课程ID,删除course表的数据
+     * @param courseId 课程ID
+     * @return
+     */
+    @Delete("delete from course where id=#{courseId}")
+    public int deleteCourse(int courseId);
+
 }

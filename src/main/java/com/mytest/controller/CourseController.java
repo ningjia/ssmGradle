@@ -54,8 +54,15 @@ public class CourseController {
 
     @RequestMapping(value = "/course/add")
     public String add(Course c){
-//        System.out.println(c.toString());
         courseService.insertCourse(c);
         return "redirect:/course/list";//请求重定向
     }
+
+
+    @RequestMapping(value = "/course/delete")
+    public String delete(Integer id){
+        courseService.deleteCourse(id);
+        return "redirect:/course/list";//请求重定向
+    }
+
 }

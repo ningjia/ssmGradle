@@ -52,4 +52,13 @@ public class CourseServiceImpl implements CourseService {
         }
     }
 
+    @Override
+    public void deleteCourse(Integer id) {
+        //删除course表的数据
+        int count_c = courseMapper.deleteCourse(id);
+        //删除student_course表的数据
+        int count_sc = scMapper.deleteStudentCourse(id);
+        System.out.println("count_c表删除"+count_c+"行数据,count_sc表删除"+count_sc+"行数据");
+    }
+
 }
