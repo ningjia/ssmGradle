@@ -7,10 +7,6 @@
         http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
         http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.0.xsd">
 
-	<!-- 允许使用注解 -->
-	<!-- 由于后面的context:component-scan也能够实现注解的引入,故将这里注释掉 -->
-	<!-- <context:annotation-config /> -->
-
 	<!-- 将对象转换为 JSON -->
 	<bean id="mappingJacksonHttpMessageConverter"
 		  class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter">
@@ -37,5 +33,12 @@
 		<property name="suffix" value=".jsp"/>
 	</bean>
 
+	<!--控制器映射器和控制器适配器-->
+	<!--注册了SpringMVC分发请求到控制器所必须的DefaultAnnotationHandlerMapping和AnnotationMethodHandlerAdapter实例-->
+	<!--使用了mvc:resources时,就需要进行此配置,SpringMVC会将未配制Controller的请求交由defaultServlet处理。-->
+	<mvc:annotation-driven></mvc:annotation-driven>
+
+	<!--配置静态资源映射,防止静态资源被拦截-->
+	<mvc:resources location="/assets/scripts/" mapping="/scripts/**"></mvc:resources>
 
 </beans>

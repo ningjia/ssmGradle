@@ -64,7 +64,7 @@ public class CourseController {
         return "redirect:/course/list";//请求重定向
     }
 
-    @RequestMapping(value = "/course/deleteWithTX")
+    @RequestMapping(value = "/course/deleteWithTX", produces = "application/json;charset=utf-8")
     @ResponseBody
     public String deleteWithTX(Integer id){
         try {
