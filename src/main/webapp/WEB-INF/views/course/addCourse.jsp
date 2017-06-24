@@ -42,10 +42,6 @@
 <body>
 AddCourse
 
-<br>
-<p>This is a paragraph.</p>
-<button id="btn1">追加文本</button>
-
 <hr>
 <form action="/ssmGradle/course/add">
     <div style="background-color: antiquewhite">
