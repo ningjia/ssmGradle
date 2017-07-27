@@ -1,0 +1,3 @@
+此目录用于临时保存MyBatisGenerator插件所生成的mapper对象和pojo对象,无实际用途。
+双击idea的Gradle工具栏中的mybatisGenerate链接(Tasks->other->mybatisGenerate)后,会自动生成相应文件至该目录下,检查无误后,可以手工将文件移动至com.mytest.pojo/mapper目录中去。
+也可以通过db.properties文件,修改文件的默认生成位置。

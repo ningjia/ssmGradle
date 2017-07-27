@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration
+        PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+        "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+<generatorConfiguration>
+    <context id="Mysql" targetRuntime="MyBatis3Simple" defaultModelType="flat">
+        <commentGenerator>
+            <!-- 屏蔽注释信息 -->
+            <property name="suppressAllComments" value="true"></property>
+            <property name="suppressDate" value="true"></property>
+            <!-- 设置要使用的Java文件的编码，默认使用当前平台的编码 -->
+            <property name="javaFileEncoding" value="utf-8"/>
+        </commentGenerator>
+
+        <!-- 数据库配置信息 -->
+        <jdbcConnection driverClass="${driverClass}"
+                        connectionURL="${connectionURL}"
+                        userId="${userId}"
+                        password="${password}">
+        </jdbcConnection>
+
+        <!-- 指定JDBC类型和Java类型如何转换 -->
+        <javaTypeResolver>
+            <!-- 设置为true,则强制DECIMAL和NUMERIC类型的字段转换为Java类型的java.math.BigDecimal;默认值为false -->
+            <property name="forceBigDecimals" value="false"/>
+        </javaTypeResolver>
+
+        <!-- 生成实体类的配置(必须配置) -->
+        <javaModelGenerator targetPackage="${modelPackage}" targetProject="${src_main_java}">
+            <!-- 是否让schema作为包的后缀 -->
+            <property name="enableSubPackages" value="true"></property>
+            <!-- 是否对数据库查询结果进行trim操作 -->
+            <property name="trimStrings" value="true"></property>
+        </javaModelGenerator>
+
+        <!-- 生成Mapper接口对应的XML文件(可选配置) -->
+        <sqlMapGenerator targetPackage="${sqlMapperPackage}" targetProject="${src_main_resources}">
+            <property name="enableSubPackages" value="true"></property>
+        </sqlMapGenerator>
+
+        <!-- 生成Mapper接口文件 -->
+        <javaClientGenerator targetPackage="${mapperPackage}" targetProject="${src_main_java}" type="ANNOTATEDMAPPER">
+            <property name="enableSubPackages" value="true"/>
+        </javaClientGenerator>
+
+        <!-- 配置table,这里使用SQL通配符%来匹配所有表。generatedKey意味着所有的表都有一个id自增的主键，在生成实体类的时候会根据该配置生成相应的注解 -->
+        <!--
+        <table tableName="%">
+            <generatedKey column="epa_id" sqlStatement="Mysql" identity="true" />
+        </table>
+        -->
+        <!-- Oracle 序列的配置方式
+            <generatedKey column="id" sqlStatement="select SEQ_{1}.nextval from dual" identity="false" type="pre"/>
+            这里的 {1} 代表的是对应表的大写形式，{0} 是小写形式
+        -->
+
+        <!-- 配置table(指定表) -->
+        <table tableName="user"></table>
+
+    </context>
+</generatorConfiguration>

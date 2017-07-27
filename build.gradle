@@ -1,5 +1,5 @@
 group 'com.test.ssmGradle'
-version '1.0-SNAPSHOT'
+//version '1.0-SNAPSHOT'
 
 apply plugin: 'groovy'
 apply plugin: 'java'
@@ -11,6 +11,11 @@ targetCompatibility = 1.8
 
 repositories {
     mavenCentral()
+}
+
+//MyBatisGenerator插件入口
+configurations {
+    mybatisGenerator
 }
 
 // 配置gradle的依赖项
@@ -34,8 +39,52 @@ dependencies {
 
     compile group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: '2.8.1'
 
-    //mybatisGenerator 'org.mybatis.generator:mybatis-generator-core:1.3.2'
-    //mybatisGenerator 'mysql:mysql-connector-java:5.1.38'
+    //MyBatisGenerator插件的依赖jar包
+    mybatisGenerator 'org.mybatis.generator:mybatis-generator-core:1.3.5'
+    mybatisGenerator 'mysql:mysql-connector-java:5.1.38'
+    mybatisGenerator 'tk.mybatis:mapper:3.3.9'
 
     testCompile group: 'junit', name: 'junit', version: '4.11'
+}
+
+//读取数据库配置,注入ant的task中,并执行task,完成MyBatisGenerator功能
+def getDbProperties = {
+    def properties = new Properties()
+    file("src/main/resources/config/db.properties").withInputStream { inputStream ->
+        properties.load(inputStream)
+    }
+    properties
+}
+task mybatisGenerate << {
+    def properties = getDbProperties()
+    ant.properties['targetProject'] = projectDir.path
+    ant.properties['driverClass'] = properties.getProperty("jdbc.driver")
+    ant.properties['connectionURL'] = properties.getProperty("jdbc.url")
+    ant.properties['userId'] = properties.getProperty("jdbc.username")
+    ant.properties['password'] = properties.getProperty("jdbc.password")
+    ant.properties['src_main_java'] = sourceSets.main.java.srcDirs[0].path
+    ant.properties['src_main_resources'] = sourceSets.main.resources.srcDirs[0].path
+    ant.properties['modelPackage'] = properties.getProperty("package.model")
+    ant.properties['mapperPackage'] = properties.getProperty("package.mapper")
+    ant.properties['sqlMapperPackage'] = properties.getProperty("package.xml")
+    ant.taskdef(
+            name: 'mbgenerator',
+            classname: 'org.mybatis.generator.ant.GeneratorAntTask',
+            classpath: configurations.mybatisGenerator.asPath
+    )
+    ant.mbgenerator(overwrite: true,
+            configfile: 'src/main/resources/config/mybatis/generatorConfig.xml', verbose: true) {
+        propertyset {
+            propertyref(name: 'targetProject')
+            propertyref(name: 'userId')
+            propertyref(name: 'driverClass')
+            propertyref(name: 'connectionURL')
+            propertyref(name: 'password')
+            propertyref(name: 'src_main_java')
+            propertyref(name: 'src_main_resources')
+            propertyref(name: 'modelPackage')
+            propertyref(name: 'mapperPackage')
+            propertyref(name: 'sqlMapperPackage')
+        }
+    }
 }
