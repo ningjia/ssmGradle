@@ -41,4 +41,19 @@
 	<!--配置静态资源映射,防止静态资源被拦截-->
 	<mvc:resources location="/assets/scripts/" mapping="/scripts/**"></mvc:resources>
 
+	<!-- 多环境的配置文件,在web.xml中切换。-->
+	<!-- 相同内容在applicationContext-properties中已经配置,此处是为了在Controller中能够获取配置文件中的数据,否则可以不配置 -->
+	<!-- 测试环境配置文件 -->
+	<beans profile="test">
+		<context:property-placeholder location="classpath:/config/properties/test/*.properties" file-encoding="UTF-8"/>
+	</beans>
+	<!-- 开发环境配置文件 -->
+	<beans profile="dev">
+		<context:property-placeholder location="classpath:/config/properties/dev/*.properties" file-encoding="UTF-8"/>
+	</beans>
+	<!-- 生产环境配置文件 -->
+	<beans profile="prod">
+		<context:property-placeholder location="classpath:/config/properties/prod/*.properties" file-encoding="UTF-8"/>
+	</beans>
+
 </beans>

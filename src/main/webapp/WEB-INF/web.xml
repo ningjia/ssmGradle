@@ -28,6 +28,17 @@
         <param-value>classpath*:config/spring/applicationContext-*.xml</param-value>
     </context-param>
 
+    !-- 动态获取properties配置文件,对应不同环境: 设置default默认值 -->
+    <context-param>
+        <param-name>spring.profiles.default</param-name>
+        <param-value>prod</param-value>
+    </context-param>
+    <!-- 动态获取properties配置文件,对应不同环境: active的默认值(设置active后default属性会失效) -->
+    <context-param>
+        <param-name>spring.profiles.active</param-name>
+        <param-value>dev</param-value>
+    </context-param>
+
     <!--设置springMVC -->
     <servlet>
         <servlet-name>spring-mvc</servlet-name>

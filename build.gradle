@@ -50,7 +50,7 @@ dependencies {
 //读取数据库配置,注入ant的task中,并执行task,完成MyBatisGenerator功能
 def getDbProperties = {
     def properties = new Properties()
-    file("src/main/resources/config/db.properties").withInputStream { inputStream ->
+    file("src/main/resources/config/properties/mybatisGeneratorConfig.properties").withInputStream { inputStream ->
         properties.load(inputStream)
     }
     properties
