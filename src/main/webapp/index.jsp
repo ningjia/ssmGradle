@@ -25,5 +25,9 @@
     <div>
       <a href="/ssmGradle/student/list ">Student表测试</a>
     </div>
+    <div>获取.properties配置文件中的信息(动态切换生产环境、开发环境、测试环境)</div>
+    <div>
+      <a href="/ssmGradle/sysProperty/config ">properties配置信息</a>
+    </div>
   </body>
 </html>
