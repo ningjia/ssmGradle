@@ -82,3 +82,12 @@ private String jdbcDriver;
 7. Reference
 - [通过 spring 容器内建的 profile 功能实现开发环境、测试环境、生产环境配置自动切换](http://blog.lifw.org/post/68990012)
 - [Spring.profile实现开发、测试和生产环境的配置和切换](http://www.cnblogs.com/strugglion/p/7091021.html)
+## 四、lombok插件的使用
+1. lombok是一款可以精减java代码、提升开发人员生产效率的辅助工具，利用注解在编译期自动生成setter/getter/toString()/constructor之类的代码。
+2. 设置过程:
+    1. 在idea中安装插件;
+    2. 在idea的设置中,进入Complier =》 Annotation Processors,勾选"Enable annotation processing"选项;
+    3. 在项目的Gradle文件中引入相关依赖;
+3. Reference
+- [lombok在IntelliJ IDEA下的使用](http://www.cnblogs.com/yjmyzz/p/lombok-with-intellij-idea.html)
+- [Intellij IDEA 安装lombok及使用详解](http://blog.csdn.net/zhglance/article/details/54931430)
